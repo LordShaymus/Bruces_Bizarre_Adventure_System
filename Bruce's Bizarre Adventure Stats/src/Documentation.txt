@@ -1,0 +1,10 @@
+/////////////////Bruce's Bizarre Adventure Documentation///////////////////////////////////
+
+==== Character Class ====
+This method is designed to create a character so that the program can read the attributes,
+resistances, and other important informations without continually having to search the 
+text document to find the required information.
+
+Method: getCharacterFile(final String name)
+Turns the name entered by the user into a Scanner to gather information required for the program
+It will make sure that the user has inputed a name that is in the directory that is hard coded in. 

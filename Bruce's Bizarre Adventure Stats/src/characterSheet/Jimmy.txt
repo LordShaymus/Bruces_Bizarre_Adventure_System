@@ -1,0 +1,20 @@
+--- Attributes ---
+Max HP: 120
+Strength: 15
+Defense: 13
+Essence: 12
+Resistance: 16
+Constitution: 20
+Agility: 11
+Skill: 21
+Limit: 32
+Intelligence: 9
+Instinct: 2
+Luck: 17
+
+--- Equipment ---
+Right Hand:
+Left Hand:
+Hat:
+Armor:
+Accessory:
