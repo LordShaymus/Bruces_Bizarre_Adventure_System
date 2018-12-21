@@ -13,8 +13,8 @@ Instinct: 2
 Luck: 17
 
 --- Equipment ---
-Right Hand:
-Left Hand:
-Hat:
-Armor:
-Accessory:
+Right Hand: Training Sword
+Left Hand: 
+Hat: Mage Hat
+Armor: Battle Armor
+Accessory 1: Duelist Gloves
