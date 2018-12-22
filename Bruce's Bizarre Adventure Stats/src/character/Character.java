@@ -5,11 +5,12 @@ import items.Equipment;
 import items.Weapon;
 public class Character extends Object{
 	private String name;
-	private int MAXHP, STR, DEF, ESS, RES, CON, AGL, SKL, LMT, INT, INS, LCK;
+	private int MAXHP, HP, STR, DEF, ESS, RES, CON, AGL, SKL, LMT, INT, INS, LCK;
+	private int init;
 	private int Fire,Water,Earth,Wind,Electricity,Ice,Poison,Light,Darkness,Acid,Slag;//Damage Resistance
 	private double Strike,Bludgeon,Pierce,Arrow,Nonphysical;//Damage Type Resistance
 	private Equipment Hat,Armor,Access1,Access2,Access3;
-	private Weapon RightHand, LeftHand;
+	public Weapon RightHand, LeftHand;
 	public Character(final String name) throws FileNotFoundException{
 		this.name = name;
 		Scanner fin = getCharacterFile(name);
@@ -33,7 +34,9 @@ public class Character extends Object{
 	private void setupCharacter(final Scanner fin) throws FileNotFoundException{
 		//--- Attribute ---
 		fin.nextLine();
-		this.MAXHP = Integer.parseInt(fin.nextLine().replaceAll("Max HP: ", ""));
+		String [] HPSplit = fin.nextLine().replaceAll("HP: ","").split("/");
+		this.HP = Integer.parseInt(HPSplit[0]);
+		this.MAXHP = Integer.parseInt(HPSplit[1]);
 		this.STR = Integer.parseInt(fin.nextLine().replaceAll("Strength: ", ""));
 		this.DEF = Integer.parseInt(fin.nextLine().replaceAll("Defense: ", ""));
 		this.ESS = Integer.parseInt(fin.nextLine().replaceAll("Essence: ", ""));
@@ -56,8 +59,9 @@ public class Character extends Object{
 		
 		
 	}
-	
+	public String getName() {return this.name;}
 	public int getMaxHP() {return this.MAXHP + Hat.getMaxHP() + Armor.getMaxHP() + Access1.getMaxHP();}
+	public int HP() {return HP;}
 	public int getStrength() {return this.STR + Hat.getStrength() + Armor.getStrength() + Access1.getStrength();}
 	public int getDefense() {return this.DEF + Hat.getDefense() + Armor.getDefense() + Access1.getDefense();}
 	public int getEssence() {return this.ESS + Hat.getEssence() + Armor.getEssence() + Access1.getEssence();}
@@ -69,8 +73,25 @@ public class Character extends Object{
 	public int getIntelligence() {return this.INT + Hat.getIntelligence() + Armor.getIntelligence() + Access1.getIntelligence();}
 	public int getInstinct() {return this.INS + Armor.getInstinct() + Hat.getInstinct() + Access1.getInstinct();}
 	public int getLuck() {return this.LCK + Hat.getLuck() + Armor.getLuck() + Access1.getLuck();}
+	
+	public void changeHP(int rate) {
+		HP += rate;
+		if(HP > MAXHP) 
+			HP = MAXHP;
+		else if(HP < 0)
+			HP = 0;
+	}
+	
+	public String getRightHandWeapon() {return RightHand.getName();}
+	public String getLeftHandWeapon() {return LeftHand.getName();}
+	public String getHat() {return Hat.getName();}
+	public String getArmor() {return Armor.getName();}
+	public String getAccessory() {return Access1.getName();}
+	
 	public int getAccuracy() {return getSkill() + getLuck();}
 	public int getArmorClass() {return getAgility() + getLuck();}
+	public int getInit() {return init;}
+	public void setInit(int roll) {this.init = getAgility() + roll;} 
 	public int getRightWeaponDamage(Character target) {
 		if(RightHand.checkProjectile() == true)
 			return RightHand.getProjectileWeaponDamage(this, target);

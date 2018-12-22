@@ -3,7 +3,7 @@ package items;
 public class Equipment {
 	private int MAXHP, STR, DEF, ESS, RES, CON, AGL, SKL, LMT, INT, INS, LCK;//Attributes
 	private double Fire,Water,Earth,Wind,Electricity,Ice,Poison,Light,Darkness,Acid,Slag;//Damage Resistance
-	private double Strike,Bludgeon,Pierce,Arrow,Nonphysical,Explosive;//Damage Type Resistance
+	private double Strike,Bludgeon,Pierce,Arrow,Nonphysical,Explosive, Slash;//Damage Type Resistance
 	private String Name, Type;
 	public Equipment(final String name) {
 		// TODO Auto-generated constructor stub
@@ -19,6 +19,7 @@ public class Equipment {
 		
 		}
 	}
+	public String getName() {return Name;}
 	public int getMaxHP() {return this.MAXHP;}
 	public int getStrength() {return this.STR;}
 	public int getDefense() {return this.DEF;}
@@ -54,6 +55,7 @@ public class Equipment {
 		switch(damageType) {
 		case "Strike": return Strike;
 		case "Bludgeon": return Bludgeon;
+		case "Slash": return Slash;
 		case "Pierce": return Pierce;
 		case "Arrow": return Arrow;
 		case "Nonphysical": return Nonphysical;
